@@ -6,14 +6,23 @@ export async function upload({
   fieldName = "file",
 }: {
   url: string;
-  file: File;
+  file: File | File[];
   fieldName?: string;
 }): Promise<Response> {
   let formData = new FormData();
-  formData.set(fieldName, file);
+  if (isFile(file)) {
+    formData.set(fieldName, file);
+  } else {
+    file.forEach((ele)=> {
+      formData.set(fieldName, ele);
+    })
+  }
   const response = await fetch(SERVER_URL + url, {
     method: "POST",
     body: formData,
   });
   return response;
 }
+
+
+const isFile = (s: unknown): s is File =>  s instanceof File

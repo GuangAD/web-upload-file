@@ -1,7 +1,7 @@
 <template>
   <div>
-    <input ref="input" id="uploadFile" type="file" accept="image/*" />
-    <button id="submit" @click="uploadFile">单上传文件</button>
+    <input ref="input" id="uploadFile" type="file" accept="image/*" multiple />
+    <button id="submit" @click="uploadFile">多上传文件</button>
   </div>
 </template>
 <script setup lang="ts">
@@ -13,8 +13,8 @@ function uploadFile() {
   console.log(input.value);
   const uploadFileEle = input.value;
   if (uploadFileEle) {
-    const file = uploadFileEle.files![0];
-    upload({ url: "/single", file });
+    const file = uploadFileEle.files!;
+    upload({ url: "/multiple", file: Array.from(file) });
   }
 }
 </script>

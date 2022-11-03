@@ -4,7 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "single": "concurrently \"node ./single-file-upload/single-file-server.js\" \"open ./single-file-upload/single-file-upload.html\"",
+    "mul": "concurrently \"node ./multiple-file-upload/multiple-file-server.js\" \"open ./multiple-file-upload/multiple-file-upload.html\"",
+    "dir": "concurrently \"node ./directory-upload/directory-upload-server.js\" \"open ./directory-upload/directory-file-upload.html \"",
+    "compress": "concurrently \"node ./directory-compress-upload/file-server.js\" \"open ./directory-compress-upload/directory-compress-upload.html\"",
+    "drag": "concurrently \"node ./drag-drop-upload/file-server.js\" \"open ./drag-drop-upload/drag-drop-upload.html\"",
+    "clipboard": "concurrently \"node ./clipboard-upload/file-server.js\" \"open ./clipboard-upload/clipboard-upload.html\"",
+    "big": "concurrently \"node ./big-file-upload/big-file-server.js\" \"open ./big-file-upload/big-file-upload.html\"",
+    "delay": "node ./node_modules/npm-delay 3000",
+    "server": "(npm run delay && node ./server-upload/server-file-upload.js) & node ./server-upload/file-server.js"
   },
   "dependencies": {
     "@koa/cors": "^3.1.0",
