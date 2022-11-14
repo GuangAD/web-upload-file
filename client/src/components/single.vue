@@ -10,7 +10,6 @@ import { upload } from "../utils/upload";
 const input = ref<HTMLInputElement | null>();
 
 function uploadFile() {
-  console.log(input.value);
   const uploadFileEle = input.value;
   if (uploadFileEle) {
     const file = uploadFileEle.files![0];
